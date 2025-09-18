@@ -1,0 +1,30 @@
+{
+  "name": "apple-inspired-portfolio",
+  "version": "1.0.0",
+  "description": "A modern, responsive portfolio website inspired by Apple's design language",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 server.py",
+    "serve": "python3 server.py",
+    "dev": "python3 server.py"
+  },
+  "keywords": [
+    "portfolio",
+    "website",
+    "responsive",
+    "apple",
+    "design",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/portfolio-website.git"
+  },
+  "homepage": "https://yourusername.github.io/portfolio-website"
+}

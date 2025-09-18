@@ -1,0 +1,47 @@
+
+SANJAEY SHUNMUGA SUNDARAM
+Data Scientist and Developer
+
+CONTACT INFORMATION
+Email: your.email@example.com
+Phone: +1 (555) 123-4567
+Location: San Francisco, CA
+
+PROFESSIONAL SUMMARY
+Creative developer with a passion for crafting beautiful, functional digital experiences. 
+With expertise in modern web technologies and a keen eye for design, I bring ideas to life 
+through clean code and thoughtful user experiences. Specialized in data science, machine learning, 
+and full-stack development.
+
+TECHNICAL SKILLS
+• HTML5, CSS3, JavaScript
+• React, Node.js, Python
+• Machine Learning, Data Analysis
+• MongoDB, Firebase, TypeScript
+• D3.js, Vue.js
+
+PROFESSIONAL EXPERIENCE
+
+Senior Data Scientist | Tech Innovations Inc. | 2022 - Present
+• Led development of machine learning models for predictive analytics
+• Improved business decision-making by 40%
+• Built and deployed scalable data pipelines processing 1M+ records daily
+
+Full Stack Developer | Digital Solutions LLC | 2020 - 2022
+• Developed responsive web applications using React and Node.js
+• Implemented real-time features and optimized application performance
+• Resulted in 50% faster load times
+
+Frontend Developer | Creative Agency | 2018 - 2020
+• Created engaging user interfaces for various client projects
+• Specialized in responsive design and user experience optimization
+
+EDUCATION
+Master of Science in Computer Science | University of California, Berkeley | 2016 - 2018
+Bachelor of Science in Mathematics | Stanford University | 2012 - 2016
+
+CERTIFICATIONS
+• Google Cloud Professional Data Engineer (2023)
+• AWS Certified Solutions Architect (2022)
+• Certified Scrum Master (2021)
+        
