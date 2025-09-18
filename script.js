@@ -81,6 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Initialize EmailJS
+(function() {
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+})();
+
 // Contact form handling
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
@@ -105,9 +110,33 @@ if (contactForm) {
             return;
         }
         
-        // Simulate form submission
-        showNotification('Message sent successfully!', 'success');
-        contactForm.reset();
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Send email using EmailJS
+        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+            to_email: "sanjaeyss@gmail.com" // Your email address
+        })
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showNotification('Message sent successfully!', 'success');
+            contactForm.reset();
+        }, function(error) {
+            console.log('FAILED...', error);
+            showNotification('Failed to send message. Please try again.', 'error');
+        })
+        .finally(function() {
+            // Reset button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
     });
 }
 
