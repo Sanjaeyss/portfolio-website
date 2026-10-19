@@ -355,7 +355,7 @@ window.CONTENT = {
   skills: [
     { group: "Languages", items: ["Python", "Java", "C++20", "C", "JavaScript", "SQL", "HTML/CSS"] },
     { group: "Networking", items: ["Ethernet II", "802.1Q VLANs", "MAC learning", "Wireshark"] },
-    { group: "AI and ML", items: ["PyTorch", "LangChain", "ChromaDB", "RAG", "Local LLMs", "Reinforcement learning", "Pandas"] },
+    { group: "AI and ML", items: ["Claude API", "OpenAI API", "PyTorch", "LangChain", "ChromaDB", "RAG", "Local LLMs", "Reinforcement learning", "Pandas"] },
     {
       group: "Engineering",
       items: ["Node.js", "Express", "React", "Vue.js", "FastAPI", "GitHub Actions", "Docker", "Podman", "Ansible", "MongoDB", "Mocha / Jest", "CMake", "GoogleTest", "MPI", "CUDA"]
