@@ -126,7 +126,7 @@ window.CONTENT = {
       category: "ml",
       tag: "AI / ML",
       stack: "LangChain · ChromaDB · FastAPI · Claude",
-      links: { github: "", slides: "", report: "", demo: "" }, // TODO: push rag-doc-qa to GitHub and paste the link
+      links: { github: "https://github.com/Sanjaeyss/rag-doc-qa", slides: "", report: "", demo: "" },
       caseStudy: {
         heading: "RAG document Q&A with cited answers",
         meta: "AI / ML · Python",
@@ -226,26 +226,25 @@ window.CONTENT = {
       stack: "MPI · OpenMP · CUDA",
       links: {
         github: "https://github.com/Sanjaeyss/CSC548-Link-Based-Ranking-Algorithm",
-        slides: "",
-        report: "",
+        slides: "assets/hits-pagerank-slides.pptx",
+        report: "assets/hits-pagerank-report.pdf",
         demo: ""
       },
       caseStudy: {
         heading: "HITS and PageRank on large graphs, in MPI, OpenMP and CUDA",
         meta: "HPC · C / CUDA · CSC 548 · 2-person team",
-        // TODO: add a speedup metric, e.g. ["12×", "CUDA vs. serial on Orkut"]
         metrics: [
-          ["2", "algorithms: HITS, PageRank"],
-          ["3", "parallel backends"],
-          ["4", "real-world graphs"],
-          ["0.85", "PageRank damping factor"]
+          ["1,989×", "HITS speedup, CUDA vs. serial on Orkut"],
+          ["1,001×", "PageRank speedup, CUDA vs. serial on Orkut"],
+          ["117M", "edges in the largest graph"],
+          ["3", "parallel backends: MPI, OpenMP, CUDA"]
         ],
         problem:
           "Link analysis has to touch every edge on every iteration, so a serial run over web and social graphs like Web-Google, Wiki-Talk and Orkut is slow.",
         whatIDid:
           "Started from a serial baseline over COO edge lists, then parallelized over edges three ways: OpenMP atomics with a reduction for convergence, MPI edge partitions merged with Allreduce, and CUDA kernels with one thread per edge using atomicAdd.",
         result:
-          "All three versions run both algorithms on Web-Google, ca-GrQc, Wiki-Talk and Orkut, iterating to convergence." // TODO: replace with runtimes or speedups
+          "On Orkut (3.07M nodes, 117M edges), HITS dropped from 352 s serial to 0.18 s on CUDA, and PageRank from 93 s to 0.09 s. OpenMP beat MPI on every graph except the tiny ca-GrQc, where there isn't enough work to cover parallel overhead."
       }
     },
     {
@@ -296,23 +295,24 @@ window.CONTENT = {
       id: "summa",
       title: "Parallel SUMMA",
       category: "hpc",
-      tag: "HPC",
-      stack: "MPI · OpenMP · CUDA",
-      links: { github: "", slides: "", report: "", demo: "" },
+      tag: "HPC · CSC 548",
+      stack: "C · MPI · 2D process grid",
+      links: { github: "", slides: "", report: "assets/summa-report.pdf", demo: "" },
       caseStudy: {
-        heading: "Distributed matrix multiply with SUMMA",
-        meta: "HPC · C++ · NC State ARC and Hazel clusters",
+        heading: "Distributed matrix multiplication with SUMMA",
+        meta: "HPC · C / MPI · CSC 548 · Individual project · NC State ARC and Hazel clusters",
         metrics: [
-          ["p × p", "process grid"],
-          ["MPI", "distributed"],
-          ["OpenMP", "shared memory"],
-          ["CUDA", "GPU"]
+          ["2", "SUMMA variants: stationary A and C"],
+          ["32,768²", "largest matrix multiplied"],
+          ["64", "MPI processes"],
+          ["0", "verification errors"]
         ],
         problem:
-          "Naive distributed matrix multiply moves whole matrices around, and communication swamps compute as the grid grows.",
+          "Dense matrix multiplication grows as n³, so a single machine can't keep up at 32,768 × 32,768. Splitting it across processes only pays off if communication stays under control.",
         whatIDid:
-          "Implemented SUMMA in MPI, OpenMP and CUDA, broadcasting panels along process rows and columns.",
-        result: "Benchmarked all three versions on NC State's ARC and Hazel clusters."
+          "Implemented two SUMMA variants in C with MPI on a 2D Cartesian process grid: stationary A keeps A in place and broadcasts B, and stationary C broadcasts A along rows and B along columns. Packed non-contiguous blocks into contiguous buffers before scattering, padded uneven blocks for load balance, and freed temporary buffers each step so the largest matrices fit in memory.",
+        result:
+          "Both variants matched the serial result with zero errors. Stationary C was faster on most runs, for example 16.1 s vs. 18.3 s on 8,192² with 16 processes, and multiplied 32,768² matrices in 295 s on 64 processes."
       }
     }
   ],
