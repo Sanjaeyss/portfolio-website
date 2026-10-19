@@ -91,7 +91,10 @@
       return `
       <div class="card pcard" data-id="${esc(pr.id)}" data-cat="${esc(pr.category)}">
         <button class="pcard-open" type="button" aria-label="Show case study: ${esc(pr.title)}"></button>
-        <span class="pcard-tag" style="color:${catColor(pr.category)}">${esc(pr.tag)}</span>
+        <span class="pcard-top">
+          <span class="pcard-tag" style="color:${catColor(pr.category)}">${esc(pr.tag)}</span>
+          ${pr.status ? `<span class="status-pill">${esc(pr.status)}</span>` : ''}
+        </span>
         <span class="pcard-title">${esc(pr.title)}</span>
         <span class="pcard-stack">${esc(pr.stack)}</span>
         ${links ? `<div class="links">${links}</div>` : ''}
@@ -110,12 +113,12 @@
         <span class="cap">Case study · ${esc(cs.meta)}</span>
         ${links ? `<div class="links">${links}</div>` : ''}
       </div>
-      <h3>${esc(cs.heading)}</h3>
+      <h3>${esc(cs.heading)}${pr.status ? ` <span class="status-pill">${esc(pr.status)}</span>` : ''}</h3>
       <div class="metrics">${cs.metrics.filter((m) => m[0]).map((m) => `<div class="metric"><div class="metric-v">${esc(m[0])}</div><div class="metric-l">${esc(m[1])}</div></div>`).join('')}</div>
       <div class="pwr">
         <div><div class="cap label-accent">Problem</div><p>${esc(cs.problem)}</p></div>
         <div><div class="cap label-accent">What I did</div><p>${esc(cs.whatIDid)}</p></div>
-        <div><div class="cap label-accent">Result</div><p>${esc(cs.result)}</p></div>
+        <div><div class="cap label-accent">${pr.status ? 'Status and next steps' : 'Result'}</div><p>${esc(cs.result)}</p></div>
       </div>`;
     if (scroll) {
       const r = $('case').getBoundingClientRect();

@@ -89,12 +89,14 @@ window.CONTENT = {
     { id: "ml", label: "AI / ML" },
     { id: "swe", label: "Software eng." },
     { id: "ops", label: "DevOps" },
+    { id: "net", label: "Networking" },
     { id: "hpc", label: "HPC" },
     { id: "cloud", label: "Cloud" }
   ],
 
   // The first project is the case study shown when the page loads.
   // links: github, slides, report, demo. Leave "" to hide a button.
+  // status: optional, e.g. "In progress". Shows a badge and labels the last section "Status".
   projects: [
     {
       id: "privacy-search",
@@ -118,6 +120,31 @@ window.CONTENT = {
           "Built the benchmarks, which run the same 50 queries through the local agent, Google Custom Search and OpenAI, log every outgoing request, time search and LLM steps separately, and can record a Wireshark capture. Built the privacy analyzer, which flags external domains, leaked query text, fingerprinting headers, API keys in URLs and session IDs, then scores each system and generates a privacy label.",
         result:
           "Side-by-side privacy labels for the local and cloud setups: what data leaves the device, who can see it, and a 0–100 score." // TODO: add the actual scores, e.g. "Local scored 100 vs. OpenAI 41."
+      }
+    },
+    {
+      id: "l2-switch",
+      title: "L2 Ethernet learning switch",
+      category: "net",
+      tag: "Networking · C++20",
+      status: "In progress",
+      stack: "C++20 · CMake · GoogleTest · GitHub Actions",
+      links: { github: "https://github.com/Sanjaeyss/l2-switch", slides: "", report: "", demo: "" },
+      caseStudy: {
+        heading: "A software Ethernet switch in modern C++",
+        meta: "Networking · C++20 · Individual project",
+        metrics: [
+          ["802.1Q", "VLAN tag parsing"],
+          ["300 s", "MAC entry aging"],
+          ["20", "GoogleTest unit tests"],
+          ["2", "CI platforms: Linux, macOS"]
+        ],
+        problem:
+          "Switching hardware decides what to do with every frame at line rate, which hides how Layer 2 forwarding actually works. Building the switch in software makes each step visible and testable.",
+        whatIDid:
+          "Wrote a zero-copy Ethernet II parser with std::span that reads 802.1Q VLAN tags (priority, DEI, VLAN ID) and returns error codes instead of throwing, which suits a per-packet path. Built a MAC learning table keyed by (VLAN, MAC) with 300-second aging, host-move detection, per-port flushes and a size limit, and it never learns multicast source addresses. Aging is tested without real waiting because the current time is passed in.",
+        result:
+          "Frame parsing and MAC learning are done, with 20 unit tests that run on Linux and macOS on every push. Next: a forwarding engine that decides to forward, flood or drop each frame, then access and trunk VLAN ports, IPv4 longest-prefix-match routing and a SAI-style hardware abstraction layer."
       }
     },
     {
@@ -326,11 +353,12 @@ window.CONTENT = {
   ],
 
   skills: [
-    { group: "Languages", items: ["Python", "Java", "C++", "C", "JavaScript", "SQL", "HTML/CSS"] },
+    { group: "Languages", items: ["Python", "Java", "C++20", "C", "JavaScript", "SQL", "HTML/CSS"] },
+    { group: "Networking", items: ["Ethernet II", "802.1Q VLANs", "MAC learning", "Wireshark"] },
     { group: "AI and ML", items: ["PyTorch", "LangChain", "ChromaDB", "RAG", "Local LLMs", "Reinforcement learning", "Pandas"] },
     {
       group: "Engineering",
-      items: ["Node.js", "Express", "React", "Vue.js", "FastAPI", "GitHub Actions", "Docker", "Podman", "Ansible", "MongoDB", "Mocha / Jest", "MPI", "CUDA"]
+      items: ["Node.js", "Express", "React", "Vue.js", "FastAPI", "GitHub Actions", "Docker", "Podman", "Ansible", "MongoDB", "Mocha / Jest", "CMake", "GoogleTest", "MPI", "CUDA"]
     }
   ],
 

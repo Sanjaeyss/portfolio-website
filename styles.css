@@ -19,6 +19,9 @@
   --cat-ops: #0f6e56;
   --cat-hpc: #534ab7;
   --cat-cloud: #a0640f;
+  --cat-net: #993556;
+  --wip: #854f0b;
+  --wip-soft: #faeeda;
 
   --f-display: "Anton", "Impact", "Arial Narrow", sans-serif;
   --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -49,6 +52,9 @@
     --cat-ops: #5dcaa5;
     --cat-hpc: #afa9ec;
     --cat-cloud: #ef9f27;
+    --cat-net: #ed93b1;
+    --wip: #fac775;
+    --wip-soft: #3a2a10;
     color-scheme: dark;
   }
 }
@@ -71,6 +77,9 @@
   --cat-ops: #5dcaa5;
   --cat-hpc: #afa9ec;
   --cat-cloud: #ef9f27;
+  --cat-net: #ed93b1;
+  --wip: #fac775;
+  --wip-soft: #3a2a10;
   color-scheme: dark;
 }
 
@@ -375,6 +384,24 @@ a { color: inherit; }
 .pcard[aria-current="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
 .pcard.dim { opacity: 0.28; }
 .pcard-tag { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.pcard-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--wip);
+  background: var(--wip-soft);
+  border-radius: 99px;
+  padding: 2px 8px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.status-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 2s ease-in-out infinite; }
 .pcard-title { color: var(--ink); font-weight: 500; font-size: 16px; line-height: 1.35; }
 .pcard-stack { font-family: var(--f-mono); font-size: 12px; color: var(--ink-3); }
 .pcard-open {
