@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css">
+<!-- ?v= forces browsers to fetch fresh files after an update. Run ./bump-version.sh before pushing. -->
+<link rel="stylesheet" href="styles.css?v=202610190210">
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
@@ -129,7 +130,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
-<script src="content.js"></script>
-<script src="script.js"></script>
+<script src="content.js?v=202610190210"></script>
+<script src="script.js?v=202610190210"></script>
 </body>
 </html>

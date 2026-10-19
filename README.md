@@ -48,3 +48,7 @@ git push
 ```
 
 GitHub Pages republishes automatically within a minute or two.
+
+## After editing
+
+Run `./bump-version.sh` before you commit. It updates the `?v=` tag on the CSS and JS files in `index.html`, so visitors get the new version right away instead of a cached copy (GitHub Pages lets browsers cache files for 10 minutes).
