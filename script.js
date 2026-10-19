@@ -8,7 +8,7 @@
   $('brand').textContent = p.shortName;
   document.title = `${p.firstName} ${p.middleName} ${p.lastName}`;
   const resume = $('nav-resume');
-  if (p.resume) resume.href = p.resume; else resume.remove();
+  if (p.resume) resume.href = encodeURI(p.resume); else resume.remove();
 
   $('hero-name').innerHTML =
     `<span>${esc(p.firstName)}</span><span>${esc(p.middleName)}</span><span class="last">${esc(p.lastName)}</span>`;
@@ -18,7 +18,7 @@
     `<a class="btn btn-primary" href="#projects">See projects</a>`,
     p.github && `<a class="btn" href="${esc(p.github)}" target="_blank" rel="noopener">GitHub ↗</a>`,
     p.linkedin && `<a class="btn" href="${esc(p.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a>`,
-    p.resume && `<a class="btn" href="${esc(p.resume)}" target="_blank" rel="noopener">Resume ↗</a>`,
+    p.resume && `<a class="btn" href="${esc(encodeURI(p.resume))}" target="_blank" rel="noopener">Resume ↗</a>`,
     p.email && `<button class="btn" type="button" data-copy="${esc(p.email)}">Copy email</button>`
   ];
   $('hero-actions').innerHTML = actions.filter(Boolean).join('');
@@ -159,7 +159,7 @@
   $('footer-links').innerHTML = [
     p.github && `<a href="${esc(p.github)}" target="_blank" rel="noopener">GitHub</a>`,
     p.linkedin && `<a href="${esc(p.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`,
-    p.resume && `<a href="${esc(p.resume)}" target="_blank" rel="noopener">Resume</a>`
+    p.resume && `<a href="${esc(encodeURI(p.resume))}" target="_blank" rel="noopener">Resume</a>`
   ].filter(Boolean).join('');
 
   // Copy buttons

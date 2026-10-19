@@ -22,11 +22,11 @@ Then open http://localhost:8000. Opening `index.html` directly also works.
 
 ## Common edits
 
-- **Add a project:** copy one block in `projects` inside `content.js` and change the text. `category` must match a filter `id` (`ml`, `swe`, `ops`, `hpc`, `cloud`). The first project is the case study shown on load.
+- **Add a project:** copy one block in `projects` inside `content.js` and change the text. `category` must match a filter `id` (`ml`, `swe`, `ops`, `net`, `hpc`, `cloud`). Add `status: "In progress"` to show a badge.. The first project is the case study shown on load.
 - **Add links:** fill `github`, `slides`, `report` or `demo` in the project's `links`. Empty ones are hidden. For a PDF in the repo, put it in `assets/` and use a path like `assets/hits-report.pdf`.
 - **Add a job:** copy a block in `experience`.
 - **Change colors:** edit the variables at the top of `styles.css`. Light values are in the first `:root` block; dark values are in the two blocks below it.
-- **Swap the resume or photo:** replace `assets/Sanjaey_Shunmuga_Sundaram_Resume.pdf` or `assets/profile.webp` and keep the same names. To use a different filename, update `profile.resume` in `content.js`.
+- **Swap the resume or photo:** replace `assets/Sanjaey Shunmuga Sundaram - SWE.pdf` or `assets/profile.webp` and keep the same names. To use a different filename, update `profile.resume` in `content.js`.
 - Search `content.js` for `TODO` to find spots worth filling in.
 
 ## Contact form (Web3Forms)
@@ -39,18 +39,15 @@ The form sends through [Web3Forms](https://web3forms.com), which emails each mes
 
 If the key is empty, the form validates input and then asks visitors to email you directly.
 
-## Deploy on GitHub Pages
+## Publish changes
 
-Copy these files into your `portfolio-website` repo (replacing the old `index.html`, `styles.css` and `script.js`), then:
+GitHub Pages serves the `main` branch at https://sanjaeyss.github.io/portfolio-website/. After editing:
 
 ```bash
-git add .
-git commit -m "Redesign portfolio"
-git push
+./bump-version.sh
+git add -A
+git commit -m "Describe the change"
+git push origin HEAD:main
 ```
 
-GitHub Pages republishes automatically within a minute or two.
-
-## After editing
-
-Run `./bump-version.sh` before you commit. It updates the `?v=` tag on the CSS and JS files in `index.html`, so visitors get the new version right away instead of a cached copy (GitHub Pages lets browsers cache files for 10 minutes).
+`bump-version.sh` updates the `?v=` tag on the CSS and JS files in `index.html`, so visitors get the new version right away instead of a cached copy (GitHub Pages lets browsers cache files for 10 minutes). The site republishes within a minute or two.
