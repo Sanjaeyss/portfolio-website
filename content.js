@@ -21,7 +21,7 @@ window.CONTENT = {
     role: "Software engineer",
     location: "Raleigh, NC",
     status: "Open to full-time SWE and AI roles. Open to relocation.",
-    resume: "assets/resume.pdf",
+    resume: "assets/Sanjaey_Shunmuga_Sundaram_Resume.pdf",
     github: "https://github.com/Sanjaeyss",
     linkedin: "https://www.linkedin.com/in/sanjaeyss/",
     email: "sanjaeyss@gmail.com"

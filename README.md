@@ -26,7 +26,7 @@ Then open http://localhost:8000. Opening `index.html` directly also works.
 - **Add links:** fill `github`, `slides`, `report` or `demo` in the project's `links`. Empty ones are hidden. For a PDF in the repo, put it in `assets/` and use a path like `assets/hits-report.pdf`.
 - **Add a job:** copy a block in `experience`.
 - **Change colors:** edit the variables at the top of `styles.css`. Light values are in the first `:root` block; dark values are in the two blocks below it.
-- **Swap the resume or photo:** replace `assets/resume.pdf` or `assets/profile.webp` and keep the same names.
+- **Swap the resume or photo:** replace `assets/Sanjaey_Shunmuga_Sundaram_Resume.pdf` or `assets/profile.webp` and keep the same names. To use a different filename, update `profile.resume` in `content.js`.
 - Search `content.js` for `TODO` to find spots worth filling in.
 
 ## Contact form (Web3Forms)
