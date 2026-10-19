@@ -1,102 +1,50 @@
-# Apple-Inspired Portfolio Website
+# Sanjaey Shunmuga Sundaram · Portfolio
 
-A modern, responsive portfolio website inspired by Apple's design language. Built with pure HTML, CSS, and JavaScript for optimal performance and compatibility.
+Plain HTML, CSS and JavaScript. No build step and no dependencies to install.
 
-## Features
+## Run it locally
 
-- **Responsive Design**: Optimized for both mobile and desktop devices
-- **Apple-Inspired UI**: Clean, minimalist design with smooth animations
-- **Interactive Elements**: Smooth scrolling, hover effects, and dynamic animations
-- **Modern Typography**: Uses SF Pro Display font family for authentic Apple feel
-- **Contact Form**: Functional contact form with validation
-- **Smooth Animations**: Fade-in effects, floating elements, and parallax scrolling
-- **Mobile Navigation**: Hamburger menu for mobile devices
-- **Performance Optimized**: Throttled scroll events and efficient animations
-
-## Sections
-
-1. **Hero Section**: Eye-catching introduction with animated floating cards
-2. **About Section**: Personal information and skills showcase
-3. **Projects Section**: Portfolio of featured projects
-4. **Contact Section**: Contact information and working contact form
-5. **Footer**: Social links and copyright information
-
-## Getting Started
-
-1. **Clone or Download**: Download all files to your local machine
-2. **Open in Browser**: Simply open `index.html` in any modern web browser
-3. **Customize Content**: Edit the HTML file to add your personal information
-4. **Deploy**: Upload to any web hosting service
-
-## Customization
-
-### Personal Information
-Edit the following in `index.html`:
-- Replace "Your Name" with your actual name
-- Update contact information (email, phone, location)
-- Add your social media links
-- Replace placeholder project information
-
-### Styling
-Modify `styles.css` to:
-- Change color scheme (search for `#007aff` to change primary color)
-- Adjust typography sizes
-- Modify spacing and layouts
-- Add custom animations
-
-### Functionality
-Enhance `script.js` to:
-- Add more interactive features
-- Integrate with backend services
-- Add analytics tracking
-- Implement additional animations
-
-## File Structure
-
-```
-portfolio-website/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles and responsive design
-├── script.js           # JavaScript functionality
-└── README.md           # This file
+```bash
+python3 -m http.server 8000
 ```
 
-## Browser Support
+Then open http://localhost:8000. Opening `index.html` directly also works.
 
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
-- Mobile browsers (iOS Safari, Chrome Mobile)
+## Files
 
-## Performance Features
+| File | What it's for |
+|---|---|
+| `content.js` | All the text, projects, experience, links and EmailJS keys. **Edit this one.** |
+| `index.html` | Page structure |
+| `styles.css` | Colors (light and dark), fonts, layout |
+| `script.js` | Renders `content.js`, filters, case studies, theme toggle, contact form |
+| `assets/` | Photo, resume and any PDFs or slides you want to link |
 
-- Optimized images and animations
-- Throttled scroll events for better performance
-- Efficient CSS animations using transform and opacity
-- Minimal external dependencies
+## Common edits
 
-## Mobile Responsiveness
+- **Add a project:** copy one block in `projects` inside `content.js` and change the text. `category` must match a filter `id` (`ml`, `swe`, `ops`, `hpc`, `cloud`). The first project is the case study shown on load.
+- **Add links:** fill `github`, `slides`, `report` or `demo` in the project's `links`. Empty ones are hidden. For a PDF in the repo, put it in `assets/` and use a path like `assets/hits-report.pdf`.
+- **Add a job:** copy a block in `experience`.
+- **Change colors:** edit the variables at the top of `styles.css`. Light values are in the first `:root` block; dark values are in the two blocks below it.
+- **Swap the resume or photo:** replace `assets/resume.pdf` or `assets/profile.webp` and keep the same names.
+- Search `content.js` for `TODO` to find spots worth filling in.
 
-The website is fully responsive and includes:
-- Mobile-first design approach
-- Hamburger navigation menu
-- Touch-friendly buttons and links
-- Optimized typography for small screens
-- Responsive grid layouts
+## Contact form (EmailJS)
 
-## Contact Form
+1. Create a free account at https://www.emailjs.com and connect your Gmail as an email service.
+2. Create a template that uses `{{from_name}}`, `{{reply_to}}`, `{{subject}}` and `{{message}}`.
+3. Paste your public key, service ID and template ID into `contact.emailjs` at the bottom of `content.js`.
 
-The contact form includes:
-- Client-side validation
-- Email format validation
-- Success/error notifications
-- Form reset after submission
+Until all three are set, the form validates input and then asks visitors to email you directly.
 
-## License
+## Deploy on GitHub Pages
 
-This project is open source and available under the MIT License.
+Copy these files into your `portfolio-website` repo (replacing the old `index.html`, `styles.css` and `script.js`), then:
 
-## Support
+```bash
+git add .
+git commit -m "Redesign portfolio"
+git push
+```
 
-For questions or issues, please refer to the code comments or create an issue in the project repository.
+GitHub Pages republishes automatically within a minute or two.
