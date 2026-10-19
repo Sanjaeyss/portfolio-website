@@ -226,7 +226,7 @@ window.CONTENT = {
       stack: "MPI · OpenMP · CUDA",
       links: {
         github: "https://github.com/Sanjaeyss/CSC548-Link-Based-Ranking-Algorithm",
-        slides: "assets/hits-pagerank-slides.pptx",
+        slides: "assets/hits-pagerank-slides.pdf",
         report: "assets/hits-pagerank-report.pdf",
         demo: ""
       },
