@@ -211,13 +211,13 @@
     sections.forEach((s) => io.observe(s));
   }
 
-  // Contact form (EmailJS)
+  // Contact form (Web3Forms: emails each message to you without access to your inbox)
   const form = $('contact-form');
   const msg = $('form-msg');
   const submit = $('cf-submit');
-  const keys = ct.emailjs || {};
-  const configured = keys.publicKey && keys.serviceId && keys.templateId && window.emailjs;
-  if (configured) window.emailjs.init({ publicKey: keys.publicKey });
+  const accessKey = (ct.web3forms && ct.web3forms.accessKey) || '';
+  const configured = !!accessKey;
+  const val = (id) => $(id).value.trim();
 
   const setMsg = (text, kind) => { msg.textContent = text; msg.className = 'form-msg' + (kind ? ' ' + kind : ''); };
   form.addEventListener('input', (e) => {
@@ -228,7 +228,7 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     let firstBad = null;
-    form.querySelectorAll('input, textarea').forEach((el) => {
+    form.querySelectorAll('.field input, .field textarea').forEach((el) => {
       const bad = !el.value.trim() || (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
       el.closest('.field').classList.toggle('invalid', bad);
       if (bad && !firstBad) firstBad = el;
@@ -244,8 +244,25 @@
     }
     submit.disabled = true;
     setMsg('Sending…');
-    window.emailjs.sendForm(keys.serviceId, keys.templateId, form)
-      .then(() => { form.reset(); setMsg('Message sent. I’ll get back to you soon.', 'ok'); })
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject: `Portfolio: ${val('cf-subject')}`,
+        from_name: `${val('cf-name')} via portfolio`,
+        name: val('cf-name'),
+        email: val('cf-email'),
+        message: val('cf-message'),
+        botcheck: form.elements.botcheck.checked
+      })
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        if (!data.success) throw new Error(data.message || 'Send failed');
+        form.reset();
+        setMsg('Message sent. I’ll get back to you soon.', 'ok');
+      })
       .catch(() => setMsg(`Couldn't send right now. Email ${p.email} directly.`, 'err'))
       .finally(() => { submit.disabled = false; });
   });

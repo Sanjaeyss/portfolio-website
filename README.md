@@ -14,7 +14,7 @@ Then open http://localhost:8000. Opening `index.html` directly also works.
 
 | File | What it's for |
 |---|---|
-| `content.js` | All the text, projects, experience, links and EmailJS keys. **Edit this one.** |
+| `content.js` | All the text, projects, experience, links and the contact form key. **Edit this one.** |
 | `index.html` | Page structure |
 | `styles.css` | Colors (light and dark), fonts, layout |
 | `script.js` | Renders `content.js`, filters, case studies, theme toggle, contact form |
@@ -29,13 +29,15 @@ Then open http://localhost:8000. Opening `index.html` directly also works.
 - **Swap the resume or photo:** replace `assets/resume.pdf` or `assets/profile.webp` and keep the same names.
 - Search `content.js` for `TODO` to find spots worth filling in.
 
-## Contact form (EmailJS)
+## Contact form (Web3Forms)
 
-1. Create a free account at https://www.emailjs.com and connect your Gmail as an email service.
-2. Create a template that uses `{{from_name}}`, `{{reply_to}}`, `{{subject}}` and `{{message}}`.
-3. Paste your public key, service ID and template ID into `contact.emailjs` at the bottom of `content.js`.
+The form sends through [Web3Forms](https://web3forms.com), which emails each message to you. It has no access to your inbox. The free plan covers 250 messages a month.
 
-Until all three are set, the form validates input and then asks visitors to email you directly.
+- The access key is in `contact.web3forms.accessKey` at the bottom of `content.js`. It's designed to be public.
+- To send messages to a different address, create a new key at web3forms.com for that address and replace it.
+- A hidden `botcheck` field blocks simple spam bots.
+
+If the key is empty, the form validates input and then asks visitors to email you directly.
 
 ## Deploy on GitHub Pages
 

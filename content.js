@@ -374,8 +374,9 @@ window.CONTENT = {
       { label: "Academic", value: "sshunmu@ncsu.edu" },
       { label: "Location", value: "Raleigh, NC" }
     ],
-    // EmailJS keys from https://dashboard.emailjs.com. Until all three are set,
-    // the form shows your email address instead of sending.
-    emailjs: { publicKey: "", serviceId: "", templateId: "" }
+    // Web3Forms access key (https://web3forms.com). It's meant to be public.
+    // Messages are emailed to the address the key was created for.
+    // Leave it "" and the form asks visitors to email you directly instead.
+    web3forms: { accessKey: "230342ee-4a5e-46f4-b7e6-2aeae3d43703" }
   }
 };

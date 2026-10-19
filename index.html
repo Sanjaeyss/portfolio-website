@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
 <!-- ?v= forces browsers to fetch fresh files after an update. Run ./bump-version.sh before pushing. -->
-<link rel="stylesheet" href="styles.css?v=202610190210">
+<link rel="stylesheet" href="styles.css?v=202610190221">
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
@@ -116,6 +116,8 @@
         <label for="cf-message">Message</label>
         <textarea id="cf-message" name="message" rows="5" placeholder="Hi Sanjaey, I came across your portfolio and..." required></textarea>
       </div>
+      <!-- Spam trap: hidden from people, bots tend to tick it -->
+      <input type="checkbox" name="botcheck" id="cf-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
       <div class="form-foot">
         <button type="submit" class="btn btn-primary" id="cf-submit">Send message →</button>
         <p class="form-msg" id="form-msg" role="status"></p>
@@ -129,8 +131,7 @@
   <span class="footer-links" id="footer-links"></span>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
-<script src="content.js?v=202610190210"></script>
-<script src="script.js?v=202610190210"></script>
+<script src="content.js?v=202610190221"></script>
+<script src="script.js?v=202610190221"></script>
 </body>
 </html>
