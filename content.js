@@ -218,6 +218,30 @@ window.CONTENT = {
       }
     },
     {
+      id: "cloud-pipeline",
+      title: "Multi-tenant data pipeline on AWS",
+      category: "cloud",
+      tag: "Cloud architecture · CSC 547",
+      stack: "AWS Batch / EKS · S3 · IAM · CloudWatch · Kubernetes",
+      links: { github: "", slides: "", report: "assets/cloud-architecture-report.pdf", demo: "" },
+      caseStudy: {
+        heading: "Moving a biotech startup's local data pipeline to a multi-tenant AWS architecture",
+        meta: "Cloud architecture · AWS, GCP, Kubernetes · CSC 547 · 2-person team",
+        metrics: [
+          ["14", "business requirements mapped to technical requirements"],
+          ["44 / 35 / 34", "provider scores: AWS, GCP, Azure"],
+          ["1 → 6", "pods added by the autoscaler under load"],
+          ["0", "downtime when a pod was killed mid-test"]
+        ],
+        problem:
+          "A biotech startup's preprocessing pipeline ran on every scientist's own machine. People copied large assay datasets to and from S3 by hand, hit dependency conflicts and version drift, and kept logs scattered across laptops, while some analytics tools lived on GCP.",
+        whatIDid:
+          "With a teammate, turned the problem into 14 business requirements and matching technical requirements, scored AWS, GCP and Azure against them, and designed the AWS architecture: per-tenant IAM isolation, a versioned S3 data layer, a job queue feeding containerized workers on AWS Batch or EKS, CloudWatch and CloudTrail for metrics and audit, per-tenant cost tags, and a controlled export path to GCP. I owned the interoperability-versus-security tradeoff, which ruled out direct cross-cloud networking in favor of signed URLs and controlled API endpoints.",
+        result:
+          "On a two-node Minikube cluster under Locust load, CPU reached 289% of the 50% target and the Horizontal Pod Autoscaler scaled workers from 1 to 6 with no manual scaling. Deleting a pod mid-test caused no downtime: a replacement started right away while the others kept serving. We also compared CloudFormation with Terraform and chose CloudFormation for the AWS-only stack."
+      }
+    },
+    {
       id: "units",
       title: "Smart Units Converter",
       category: "swe",
@@ -358,7 +382,7 @@ window.CONTENT = {
     { group: "AI and ML", items: ["Claude API", "OpenAI API", "PyTorch", "LangChain", "ChromaDB", "RAG", "Local LLMs", "Reinforcement learning", "Pandas"] },
     {
       group: "Engineering",
-      items: ["Node.js", "Express", "React", "Vue.js", "FastAPI", "GitHub Actions", "Docker", "Podman", "Ansible", "MongoDB", "Mocha / Jest", "CMake", "GoogleTest", "MPI", "CUDA"]
+      items: ["Node.js", "Express", "React", "Vue.js", "FastAPI", "GitHub Actions", "Docker", "Podman", "Kubernetes", "Ansible", "AWS", "CloudFormation", "MongoDB", "Mocha / Jest", "Locust", "CMake", "GoogleTest", "MPI", "CUDA"]
     }
   ],
 
