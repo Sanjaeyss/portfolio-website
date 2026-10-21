@@ -226,7 +226,7 @@ window.CONTENT = {
       links: { github: "", slides: "", report: "assets/cloud-architecture-report.pdf", demo: "" },
       caseStudy: {
         heading: "Moving a biotech startup's local data pipeline to a multi-tenant AWS architecture",
-        meta: "Cloud architecture · AWS, GCP, Kubernetes · CSC 547 · 2-person team",
+        meta: "Cloud architecture · AWS, GCP, Kubernetes · CSC 547 · 2-person team. I owned security, storage and audit.",
         metrics: [
           ["14", "business requirements mapped to technical requirements"],
           ["44 / 35 / 34", "provider scores: AWS, GCP, Azure"],
@@ -234,11 +234,11 @@ window.CONTENT = {
           ["0", "downtime when a pod was killed mid-test"]
         ],
         problem:
-          "A biotech startup's preprocessing pipeline ran on every scientist's own machine. People copied large assay datasets to and from S3 by hand, hit dependency conflicts and version drift, and kept logs scattered across laptops, while some analytics tools lived on GCP.",
+          "A biotech startup's preprocessing pipeline ran on every scientist's own machine. People copied large assay datasets to and from S3 by hand, hit dependency conflicts and version drift, and kept logs scattered across laptops, while some analytics tools lived on GCP. As a team we turned this into 14 business requirements, scored AWS, GCP and Azure against them, and designed a multi-tenant AWS architecture with a job queue feeding containerized workers.",
         whatIDid:
-          "With a teammate, turned the problem into 14 business requirements and matching technical requirements, scored AWS, GCP and Azure against them, and designed the AWS architecture: per-tenant IAM isolation, a versioned S3 data layer, a job queue feeding containerized workers on AWS Batch or EKS, CloudWatch and CloudTrail for metrics and audit, per-tenant cost tags, and a controlled export path to GCP. I owned the interoperability-versus-security tradeoff, which ruled out direct cross-cloud networking in favor of signed URLs and controlled API endpoints.",
+          "Owned the storage and audit services: Amazon S3 with versioning, lifecycle rules and per-tenant bucket policies, and AWS CloudTrail to record every data access, job trigger and IAM action. Applied the Well-Architected Security pillar with per-tenant IAM identities, KMS encryption at rest and in transit, and separate dev, test and prod environments. Owned the interoperability-versus-security tradeoff, which ruled out direct AWS-to-GCP networking in favor of signed URLs and controlled API endpoints. Wrote the CloudFormation vs. Terraform comparison.",
         result:
-          "On a two-node Minikube cluster under Locust load, CPU reached 289% of the 50% target and the Horizontal Pod Autoscaler scaled workers from 1 to 6 with no manual scaling. Deleting a pod mid-test caused no downtime: a replacement started right away while the others kept serving. We also compared CloudFormation with Terraform and chose CloudFormation for the AWS-only stack."
+          "Every tenant is limited to its own role, buckets and jobs, and every access is auditable. GCP tools get processed data only through one controlled path. My comparison recommended CloudFormation for the AWS-only stack. In our Kubernetes test, CPU reached 289% of the 50% target, the autoscaler went from 1 to 6 pods, and deleting a pod caused no downtime."
       }
     },
     {
